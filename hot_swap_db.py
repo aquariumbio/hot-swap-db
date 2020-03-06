@@ -3,6 +3,7 @@ import argparse
 import os
 
 USERNAME = "aquarium"
+PASSWORD = "aSecretAquarium"
 DATABASE = "production"
 DC_EXEC = ["docker-compose", "exec", "-T", "db"]
 
@@ -28,7 +29,7 @@ def dump_cmd(filename):
 
 def load_cmd(filename):
     cmd = DC_EXEC
-    cmd += ["mysql", "--user=" + USERNAME, "-p"]
+    cmd += ["mysql", "--user=" + USERNAME, "--password=" + PASSWORD]
     cmd += [DATABASE, "<", filename]
     return cmd
 
