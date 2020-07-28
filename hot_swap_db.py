@@ -23,7 +23,7 @@ def get_args():
 
 def dump_cmd(filename):
     cmd = DC_EXEC
-    cmd += ["mysqldump", "--user=" + USERNAME, "-p"]
+    cmd += ["mysqldump", "--no-tablespaces", "--user=" + USERNAME, "-p"]
     cmd += [DATABASE, ">", filename]
     return cmd
 
@@ -45,7 +45,7 @@ def main():
         msg = "WARNING: This will overwrite the current database with the file {}."
         msg = "\033[93m" + msg + "\033[0m"
         print(msg.format(args.filename))
-        proceed = raw_input("Would you like to proceed? (y/n) ").lower()
+        proceed = input("Would you like to proceed? (y/n) ").lower()
 
         if proceed == 'y':
             print("Loading {} into {}.".format(args.filename, DATABASE))
